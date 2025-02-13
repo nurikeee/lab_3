@@ -16,7 +16,14 @@ public class LabStack {
      * @param elem элемент, который необходимо поместить в стек
      */
     public void push(String elem) {
-        throw new RuntimeException("implement me");
+        StackElement stackElement = new StackElement(elem);
+
+        if (this.next == null) {
+            this.next = stackElement;
+        } else {
+            stackElement.setNext(this.next);
+            this.next = stackElement;
+        }
     }
 
     /**
@@ -25,6 +32,12 @@ public class LabStack {
      * @return следующий элемент стека
      */
     public String pop() {
-        throw new RuntimeException("implement me");
+        if (this.next == null) {
+            return null;
+        } else {
+            StackElement retVal = this.next;
+            this.next = retVal.getNext();
+            return retVal.getValue();
+        }
     }
 }
